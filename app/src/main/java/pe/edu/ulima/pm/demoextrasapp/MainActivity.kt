@@ -1,23 +1,30 @@
 package pe.edu.ulima.pm.demoextrasapp
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.PendingIntent.FLAG_MUTABLE
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.LocationRequest
 import android.os.Build
 import android.os.Bundle
+import android.os.Looper
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import pe.edu.ulima.pm.demoextrasapp.presentation.MainScreen
 
 val CHANNEL_ID = "1"
@@ -34,7 +41,8 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MainScreen(
-                onNotificationClick = sendNotification
+                onNotificationClick = sendNotification,
+                onUltimaLocalizacionClick = obtenerLocalizacion
             )
         }
     }
@@ -135,6 +143,54 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    @SuppressLint("MissingPermission")
+        private val obtenerUltimaLocalizacion : () -> Unit = {
+        // Este codigo se ejecuta luego de haber pedido permisos
+        val fusedLocationClient =
+            LocationServices.getFusedLocationProviderClient(this)
+
+        fusedLocationClient.getCurrentLocation(Priority.PRIORITY_LOW_POWER, null)
+            .addOnSuccessListener {
+                if (it != null) {
+                    Log.i("Location", "Lat: ${it.latitude} Long: ${it.longitude}")
+                }
+            }
+
+        /*fusedLocationClient.lastLocation.addOnSuccessListener {
+            if (it != null) {
+                Log.i("Location", "Lat: ${it.latitude} Long: ${it.longitude}")
+            }
+
+        }*/
+    }
+
+    @SuppressLint("MissingPermission")
+    private val obtenerLocalizacion : () -> Unit = {
+        val fusedLocationClient =
+            LocationServices.getFusedLocationProviderClient(this)
+
+        //val locationRequest = LocationRequest.Builder(3000).build()
+        val locationRequest = com.google.android.gms.location.LocationRequest().apply {
+            priority = Priority.PRIORITY_LOW_POWER
+            setInterval(3000)
+        }
+
+        fusedLocationClient.requestLocationUpdates(
+            locationRequest,
+            object : LocationCallback() {
+                override fun onLocationResult(location: LocationResult) {
+                    super.onLocationResult(location)
+                    Log.i(
+                        "Location",
+                        "Lat: ${location.lastLocation!!.latitude} " +
+                                "Long: ${location.lastLocation!!.longitude}")
+                }
+            },
+            Looper.getMainLooper()
+        )
+    }
+
 }
 
 
