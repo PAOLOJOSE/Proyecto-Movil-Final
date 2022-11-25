@@ -3,9 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="pe.edu.ulima.pm.demoextrasapp">
 
+    <uses-feature android:name="android.hardware.camera.any" />
+
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -24,9 +27,12 @@
             android:theme="@style/Theme.DemoExtrasApp" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.DemoExtrasApp">
+        </activity>
+        <activity android:name=".CameraActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
