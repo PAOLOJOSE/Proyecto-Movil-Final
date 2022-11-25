@@ -1,6 +1,8 @@
 package pe.edu.ulima.pm.demoextrasapp.presentation.components
 
+import android.content.Context
 import android.net.Uri
+import android.os.Build
 import android.util.Size
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -13,6 +15,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
 @Composable
 fun MyCameraView(
@@ -36,8 +39,24 @@ fun MyCameraView(
     CameraPreviewView(
         imageCapture = imageCapture,
         lensFacing = lensFacing.value
-    ) {
+    ) { action ->
+        when {
+            action is CameraUIAction.OnCameraClick -> {
+                // Se ha hecho click para tomar la foto
+                takePhoto(
+                    filenameFormat = "dd-M-yyyy_hh:mm:ss",
+                    imageCapture = imageCapture,
+                    outputDirectory = "",
+                    executor = Executors.newSingleThreadExecutor(),
+                    onPhotoTaken = onPhotoTaken,
+                    onError =  onError
+                )
+            }
 
+            action is CameraUIAction.OnSwitchCameraClick -> {
+                // Caso de cambio de camara (frontal <-> back)
+            }
+        }
     }
 }
 
@@ -73,6 +92,17 @@ private fun takePhoto(
             }
         }
     )
+}
+
+// Extension
+private fun Context.getOutputDirectory() : File {
+    val mediaDir = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+    } else {
+
+    }
+
+    return mediaDir
 }
 
 
