@@ -6,11 +6,15 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -47,6 +51,16 @@ fun CameraPreviewView(
         preview.setSurfaceProvider(previewView.surfaceProvider)
     }
 
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        AndroidView(
+            factory = {
+                previewView
+            },
+            modifier = Modifier.fillMaxSize()
+        )
+    }
 }
 
 // Extensions

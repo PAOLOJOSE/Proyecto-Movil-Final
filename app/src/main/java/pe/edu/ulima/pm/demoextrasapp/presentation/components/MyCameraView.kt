@@ -33,7 +33,12 @@ fun MyCameraView(
     val context = LocalContext.current
 
     // Preview
+    CameraPreviewView(
+        imageCapture = imageCapture,
+        lensFacing = lensFacing.value
+    ) {
 
+    }
 }
 
 private fun takePhoto(
