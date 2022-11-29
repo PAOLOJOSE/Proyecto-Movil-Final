@@ -16,6 +16,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.sharp.FlipCameraAndroid
 import androidx.compose.material.icons.sharp.Lens
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -88,6 +89,23 @@ fun CameraPreviewView(
                 tint = Color.White
             )
         }
+        IconButton(
+            onClick = {
+                cameraUIActionCallback(CameraUIAction.OnSwitchCameraClick)
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .size(64.dp)
+                .padding(1.dp)
+                .border(1.dp, Color.White, CircleShape)
+        ) {
+            Icon(
+                imageVector = Icons.Sharp.FlipCameraAndroid,
+                contentDescription = "",
+                tint = Color.White
+            )
+        }
+
     }
 }
 
