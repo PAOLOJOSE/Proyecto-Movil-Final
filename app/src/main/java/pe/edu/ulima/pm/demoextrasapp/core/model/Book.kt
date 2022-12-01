@@ -1,6 +1,6 @@
-package pe.edu.ulima.pm.demoextrasapp.core.remote.resources.response
+package pe.edu.ulima.pm.demoextrasapp.core.model
 
-data class Book(
+class Book(
     val ISBN: String,
     val autor: String,
     val año: String,

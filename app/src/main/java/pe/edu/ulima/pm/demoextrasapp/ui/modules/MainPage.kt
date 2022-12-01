@@ -9,6 +9,7 @@ import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -21,6 +22,7 @@ import pe.edu.ulima.pm.demoextrasapp.ui.modules.library.BookList
 import pe.edu.ulima.pm.demoextrasapp.ui.modules.library.BookReserve
 
 import pe.edu.ulima.pm.demoextrasapp.ui.modules.shared.AppTopBar
+import pe.edu.ulima.pm.demoextrasapp.ui.viewModels.LibraryViewModel
 
 
 @Composable
@@ -61,7 +63,8 @@ fun AppNavigation(
             composable(
                 LibraryDirections.bookList.destination, LibraryDirections.bookList.arguments
             ) {
-                BookList()
+                val libraryViewModel = hiltViewModel<LibraryViewModel>()
+                BookList(libraryViewModel)
             }
             composable(
                 LibraryDirections.bookCommentaries.destination,
