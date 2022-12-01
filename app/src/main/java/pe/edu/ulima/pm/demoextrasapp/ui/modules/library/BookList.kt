@@ -37,32 +37,42 @@ fun BookList() {
                 painter = painterResource(id = R.drawable.camara),
                 contentDescription = "Bg Image",
                 modifier = Modifier
-                    .height(160.dp)
+                    .height(100.dp)
                     .fillMaxWidth(),
                 contentScale = ContentScale.FillWidth
             )
             Spacer(modifier = Modifier.width(8.dp))
         }
 
-        Text(
-            text = "PANTALLA 1",
-            style = TextStyle(color = Color.Black, fontSize = 42.sp, fontWeight = FontWeight.Black)
-        )
+        Column(
 
-        TextField(
-            value = textValue,
-            onValueChange = { textValue = it },
-            label = { Text("Ingresa el título o tema") }
-        )
+        ) {
+            Row(
+                modifier = Modifier
+
+            ){
+                TextField(
+                    value = textValue,
+                    onValueChange = { textValue = it },
+                    label = { Text("Ingresa el título o tema") }
+                )
+            }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+
+            ) {
+                Button(onClick = { (textValue) }
+                ) {
+
+                    Text("BUSCAR")
+                }
+
+            }
+        }
 
         Button(onClick = { (textValue) }) {
             Text("REGLAMENTO DE LA BIBLIOTECA")
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewLibrary() {
-    BookList()
 }
