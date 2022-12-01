@@ -17,7 +17,7 @@ object HomeDirections : NavigationGroup(
 
 object LibraryDirections : NavigationGroup(
     NavigationRoute(
-        "driver",
+        "library",
         emptyList()
     )
 ) {
