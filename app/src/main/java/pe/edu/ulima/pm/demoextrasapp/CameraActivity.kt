@@ -1,6 +1,7 @@
 package pe.edu.ulima.pm.demoextrasapp
 
 import android.content.pm.PackageManager
+import android.content.res.Resources.Theme
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -9,6 +10,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import pe.edu.ulima.pm.demoextrasapp.presentation.MyCameraScreen
+import pe.edu.ulima.pm.demoextrasapp.ui.modules.MainPage
+import pe.edu.ulima.pm.demoextrasapp.ui.theme.ULimaLibraryTheme
 
 class CameraActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,14 +19,16 @@ class CameraActivity : ComponentActivity() {
 
         requestCameraPermission()
         setContent {
-            MyCameraScreen()
+            ULimaLibraryTheme {
+                MainPage()
+            }
         }
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
-        if ( isGranted) {
+        if (isGranted) {
             Log.i("CameraActivity", "Permisos Otorgados")
         } else {
             Log.i("CameraActivity", "Permisos Denegados")
@@ -41,8 +46,7 @@ class CameraActivity : ComponentActivity() {
 
             // 2. No dio los permisos y se necesitan
             ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                android.Manifest.permission.CAMERA
+                this, android.Manifest.permission.CAMERA
             ) -> {
                 finish()
             }
