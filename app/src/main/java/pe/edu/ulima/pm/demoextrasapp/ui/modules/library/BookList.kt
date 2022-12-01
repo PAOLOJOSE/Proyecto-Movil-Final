@@ -1,7 +1,10 @@
 package pe.edu.ulima.pm.demoextrasapp.ui.modules.library
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -21,58 +24,27 @@ import pe.edu.ulima.pm.demoextrasapp.R
 
 @Composable
 fun BookList() {
+
     var textValue by remember { mutableStateOf("") }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.SpaceAround,
-        horizontalAlignment = Alignment.CenterHorizontally
+    Row(
+        Modifier.size(200.dp),
     ) {
-        Button(
-            onClick = {}
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.camara),
-                contentDescription = "Bg Image",
-                modifier = Modifier
-                    .height(100.dp)
-                    .fillMaxWidth(),
-                contentScale = ContentScale.FillWidth
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-        }
-
+        Image(
+            painter = painterResource(id = R.drawable.libro),
+            contentDescription = "libro Image",
+            modifier = Modifier
+                .size(100.dp)
+                .fillMaxWidth(),
+            contentScale = ContentScale.FillWidth,
+        )
         Column(
-
+            Modifier.size(200.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Row(
-                modifier = Modifier
-
-            ){
-                TextField(
-                    value = textValue,
-                    onValueChange = { textValue = it },
-                    label = { Text("Ingresa el título o tema") }
-                )
-            }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-
-            ) {
-                Button(onClick = { (textValue) }
-                ) {
-
-                    Text("BUSCAR")
-                }
-
-            }
-        }
-
-        Button(onClick = { (textValue) }) {
-            Text("REGLAMENTO DE LA BIBLIOTECA")
+            Text(text = "Titulo del libro")
+            Text(text = "Tema")
         }
     }
 }
