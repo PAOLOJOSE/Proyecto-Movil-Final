@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,7 +18,6 @@ import kotlin.math.round
 
 @Composable
 fun BookDetail(navigatorController: NavHostController) {
-
     Column(
         Modifier
             .fillMaxWidth()
@@ -28,8 +28,10 @@ fun BookDetail(navigatorController: NavHostController) {
     )
     {
         Column(
-            Modifier.size(100.dp)
-                .border(width = 2.dp, Color.Red),
+            Modifier
+                .width(300.dp)
+                .height(150.dp)
+                .border(width = 2.dp, Color.Black),
         ){
             Text(text = "Titulo: ", fontSize = 30.sp)
             Text(text = "Autor: ")
@@ -38,14 +40,37 @@ fun BookDetail(navigatorController: NavHostController) {
             Text(text = "ISBN: ")
         }
         Column(
-            Modifier.size(100.dp)
+            Modifier
+                .width(300.dp)
+                .height(50.dp)
                 .border(width = 2.dp, Color.Black),
         ){
-            Text(text = "Titulo: ", fontSize = 30.sp)
-            Text(text = "Autor: ")
-            Text(text = "Pie de imprenta: ")
-            Text(text = "Descripcion fisica: ")
-            Text(text = "ISBN: ")
+            Text(text = "Codigo de clasificacion: ")
+            Text(text = "Localización: ")
+            Text(text = "Copias: ")
+        }
+        Spacer(modifier = Modifier.width(16.dp))
+        Row(
+            Modifier
+                .width(300.dp)
+                .height(50.dp)
+                .border(width = 2.dp, Color.Black),
+        ) {
+            Text(text = "Disponibilidad: 1")
+            Button(
+                onClick = { },
+            ){
+                Text("RESERVAR")
+            }
+        }
+
+        Spacer(modifier = Modifier.width(10.dp))
+
+        Button(
+            onClick = { },
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        ) {
+            Text("NOTIFICAR DE DISPONIBILIDAD")
         }
     }
 }
