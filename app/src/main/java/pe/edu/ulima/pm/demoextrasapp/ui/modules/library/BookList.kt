@@ -63,10 +63,10 @@ fun BookList(
     LazyColumn {
         items(booksList) { book ->
             BookItem(book.titulo, book.tema, book.url) {
-                navigatorController.navigate("${LibraryDirections.bookDetail.destination}/${book.id}")
+                navigatorController.navigate("${LibraryDirections.bookCommentaries.destination}/${book.id}")
             }
         }
     }
-
+//bookCommentaries
 
 }
