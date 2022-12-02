@@ -1,5 +1,6 @@
 package pe.edu.ulima.pm.demoextrasapp.ui.modules.home
 
+import HomeDirections
 import LibraryDirections
 import android.content.Intent
 import android.net.Uri
@@ -37,7 +38,7 @@ fun SearchScreen(navController: NavController) {
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        IconButton(onClick = {}) {
+        IconButton(onClick = { navController.navigate(HomeDirections.camera.destination) }) {
             Icon(
                 Icons.Rounded.PhotoCamera, contentDescription = "Bg Image", Modifier.size(50.dp)
             )

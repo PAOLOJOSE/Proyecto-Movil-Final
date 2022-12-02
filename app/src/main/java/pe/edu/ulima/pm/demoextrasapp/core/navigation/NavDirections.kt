@@ -13,6 +13,11 @@ object HomeDirections : NavigationGroup(
         "${root.destination}/home",
         emptyList()
     )
+
+    val camera = NavigationRoute(
+        "${root.destination}/camera",
+        emptyList()
+    )
     override var default = home
 }
 

@@ -1,7 +1,6 @@
 package pe.edu.ulima.pm.demoextrasapp
 
 import android.content.pm.PackageManager
-import android.content.res.Resources.Theme
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -10,10 +9,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
-import pe.edu.ulima.pm.demoextrasapp.presentation.MyCameraScreen
 import pe.edu.ulima.pm.demoextrasapp.ui.modules.MainPage
 import pe.edu.ulima.pm.demoextrasapp.ui.theme.ULimaLibraryTheme
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class CameraActivity : ComponentActivity() {

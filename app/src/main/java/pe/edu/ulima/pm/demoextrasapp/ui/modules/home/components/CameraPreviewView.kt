@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp.presentation.components
+package pe.edu.ulima.pm.demoextrasapp.ui.modules.home.components
 
 import android.content.Context
 import androidx.camera.core.CameraSelector
@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
