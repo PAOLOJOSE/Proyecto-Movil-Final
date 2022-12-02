@@ -97,9 +97,9 @@ fun BookDetail(
                     width = 2.dp, Color.Black
                 ),
         ) {
-            Text(text = "Codigo de clasificacion: ")
-            Text(text = "Localización: ")
-            Text(text = "Copias: ")
+            Text(text = "Codigo de clasificacion: ${book.value!!.codCla}")
+            Text(text = "Localización: ${book.value!!.localizacion}")
+            Text(text = "Copias: ${book.value!!.copias}")
         }
         Spacer(modifier = Modifier.width(16.dp))
         Row(
