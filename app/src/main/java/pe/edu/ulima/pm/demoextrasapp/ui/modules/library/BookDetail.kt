@@ -82,6 +82,7 @@ fun BookDetail(
             Modifier
                 .width(300.dp)
                 .height(150.dp)
+                .padding(horizontal = 10.dp, vertical = 10.dp)
                 .border(width = 2.dp, Color.Black),
         ) {
             Text(text = book.value!!.titulo, fontSize = 30.sp)

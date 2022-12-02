@@ -16,7 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import pe.edu.ulima.pm.demoextrasapp.R
 
@@ -38,6 +40,11 @@ fun SearchScreen(navController: NavController) {
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(text = "Utiliza la camara para buscar un libro o accede directamenta a la Bilbioteca",
+            textAlign = TextAlign.Center,
+            fontSize = 20.sp,
+        )
+
         IconButton(onClick = { navController.navigate(HomeDirections.camera.destination) }) {
             Icon(
                 Icons.Rounded.PhotoCamera, contentDescription = "Bg Image", Modifier.size(50.dp)
@@ -59,12 +66,12 @@ fun SearchScreen(navController: NavController) {
 
             ) {
                 Button(onClick = { navController.navigate(LibraryDirections.bookList.destination) }) {
-                    Text("BUSCAR")
+                    Text("ACCEDER A LA BIBLIOTECA", textAlign = TextAlign.Center)
                 }
             }
         }
 
-        Button(onClick = { context.startActivity(intent) }) {
+        Button(onClick = { context.startActivity(intent) },) {
             Text("REGLAMENTO DE LA BIBLIOTECA")
         }
     }
