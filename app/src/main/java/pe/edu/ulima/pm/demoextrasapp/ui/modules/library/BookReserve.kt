@@ -1,7 +1,9 @@
 package pe.edu.ulima.pm.demoextrasapp.ui.modules.library
+
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 
 @Composable
-fun BookReserve(){
+fun BookReserve(navigatorController: NavHostController) {
 
 }

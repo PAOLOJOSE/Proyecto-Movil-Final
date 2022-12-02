@@ -63,6 +63,7 @@ dependencies {
     def hilt_navigation_version = "1.0.0"
     def lifecycle_version = "2.5.1"
     def livedata_version = "1.3.1"
+    def coil_version = "2.2.2"
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation "androidx.compose.ui:ui:$compose_version"
@@ -97,6 +98,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_core_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_core_version"
     implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_version"
+
+    // Coil
+    implementation "io.coil-kt:coil-compose:$coil_version"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"

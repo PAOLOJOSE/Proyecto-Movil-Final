@@ -32,7 +32,6 @@ class LibraryViewModel @Inject constructor(
                         Book(
                             it.ISBN,
                             it.autor,
-                            it.año,
                             it.codCla,
                             it.coment,
                             it.copias,
@@ -43,7 +42,8 @@ class LibraryViewModel @Inject constructor(
                             it.localizacion,
                             it.tema,
                             it.titulo,
-                            it.year
+                            it.year,
+                            it.url
                         )
                     }
                     _books.postValue(books)

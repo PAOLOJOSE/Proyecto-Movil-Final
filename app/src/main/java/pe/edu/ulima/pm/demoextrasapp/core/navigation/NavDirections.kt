@@ -1,3 +1,5 @@
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import pe.edu.ulima.pm.demoextrasapp.core.navigation.NavigationGroup
 import pe.edu.ulima.pm.demoextrasapp.core.navigation.NavigationRoute
 
@@ -27,7 +29,7 @@ object LibraryDirections : NavigationGroup(
     )
     val bookDetail = NavigationRoute(
         "${root.destination}/book-detail",
-        emptyList()
+        listOf(navArgument("bookId") { type = NavType.StringType })
     )
     val bookCommentaries = NavigationRoute(
         "${root.destination}/book-commentaries",
@@ -38,5 +40,6 @@ object LibraryDirections : NavigationGroup(
         "${root.destination}/book-reserve",
         emptyList()
     )
+
     override var default = bookList
 }

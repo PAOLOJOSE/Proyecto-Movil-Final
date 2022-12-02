@@ -1,12 +1,11 @@
 package pe.edu.ulima.pm.demoextrasapp.ui.modules
 
 import AppDrawer
-import HomeDirections
 import LibraryDirections
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -16,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import kotlinx.coroutines.launch
+
 import pe.edu.ulima.pm.demoextrasapp.ui.modules.library.BookCommentaries
 import pe.edu.ulima.pm.demoextrasapp.ui.modules.library.BookDetail
 import pe.edu.ulima.pm.demoextrasapp.ui.modules.library.BookList
@@ -32,6 +32,7 @@ fun MainPage() {
 
     val navController = rememberNavController()
 
+
     Scaffold(scaffoldState = scaffoldState, drawerContent = { AppDrawer() }, topBar = {
         AppTopBar(title = "Biblioteca", openDrawer = {
             scope.launch {
@@ -43,8 +44,11 @@ fun MainPage() {
     }) { innerPadding ->
         Box(Modifier.padding(innerPadding)) {
             AppNavigation(
-                navController = navController, startDestination = LibraryDirections.root.destination
+                navController = navController,
+                startDestination = LibraryDirections.root.destination
             )
+
+
         }
     }
 }
@@ -54,8 +58,9 @@ fun AppNavigation(
     navController: NavHostController,
     startDestination: String,
 ) {
-    NavHost(navController = navController, startDestination = startDestination) {
 
+
+    NavHost(navController = navController, startDestination = startDestination) {
         navigation(
             startDestination = LibraryDirections.default.destination,
             route = LibraryDirections.root.destination
@@ -64,23 +69,25 @@ fun AppNavigation(
                 LibraryDirections.bookList.destination, LibraryDirections.bookList.arguments
             ) {
                 val libraryViewModel = hiltViewModel<LibraryViewModel>()
-                BookList(libraryViewModel)
+                BookList(libraryViewModel, navController)
             }
             composable(
-                LibraryDirections.bookCommentaries.destination,
+                "${LibraryDirections.bookCommentaries.destination}/{bookId}",
                 LibraryDirections.bookCommentaries.arguments
             ) {
-                BookCommentaries()
+                BookCommentaries(navController)
             }
             composable(
-                LibraryDirections.bookDetail.destination, LibraryDirections.bookDetail.arguments
+                "${LibraryDirections.bookDetail.destination}/{bookId}",
+                LibraryDirections.bookDetail.arguments
             ) {
-                BookDetail()
+                BookDetail(navController)
             }
             composable(
-                LibraryDirections.bookReserve.destination, LibraryDirections.bookReserve.arguments
+                "${LibraryDirections.bookReserve.destination}/{bookId}",
+                LibraryDirections.bookReserve.arguments
             ) {
-                BookReserve()
+                BookReserve(navController)
             }
 
         }
