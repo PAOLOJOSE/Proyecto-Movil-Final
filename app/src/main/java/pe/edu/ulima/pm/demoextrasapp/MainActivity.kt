@@ -31,7 +31,7 @@ import pe.edu.ulima.pm.demoextrasapp.presentation.MainScreen
 val CHANNEL_ID = "1"
 
 class MainActivity : ComponentActivity() {
-    private var channel : NotificationChannel? = null
+    private var channel: NotificationChannel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,16 +54,7 @@ class MainActivity : ComponentActivity() {
         notifManager.notify(1, notif)
     }
 
-    fun createNotification() : Notification {
-
-        val intent = Intent(
-            this,
-            DestinoActivity::class.java
-        ).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or
-                    Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-
+    fun createNotification(): Notification {
         val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             PendingIntent.getActivity(
                 this,
@@ -100,7 +91,7 @@ class MainActivity : ComponentActivity() {
                 description = "Es una descripcion"
             }
 
-            val notificationManager : NotificationManager =
+            val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel!!)
         }
@@ -146,7 +137,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @SuppressLint("MissingPermission")
-        private val obtenerUltimaLocalizacion : () -> Unit = {
+    private val obtenerUltimaLocalizacion: () -> Unit = {
         // Este codigo se ejecuta luego de haber pedido permisos
         val fusedLocationClient =
             LocationServices.getFusedLocationProviderClient(this)
@@ -167,7 +158,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @SuppressLint("MissingPermission")
-    private val obtenerLocalizacion : () -> Unit = {
+    private val obtenerLocalizacion: () -> Unit = {
         val fusedLocationClient =
             LocationServices.getFusedLocationProviderClient(this)
 
@@ -185,7 +176,8 @@ class MainActivity : ComponentActivity() {
                     Log.i(
                         "Location",
                         "Lat: ${location.lastLocation!!.latitude} " +
-                                "Long: ${location.lastLocation!!.longitude}")
+                                "Long: ${location.lastLocation!!.longitude}"
+                    )
                 }
             },
             Looper.getMainLooper()

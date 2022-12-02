@@ -21,7 +21,6 @@ import pe.edu.ulima.pm.demoextrasapp.R
 
 @Composable
 fun SearchScreen(navController: NavController) {
-
     val context = LocalContext.current
     val intent = remember {
         Intent(
@@ -29,7 +28,6 @@ fun SearchScreen(navController: NavController) {
             Uri.parse("https://www.ulima.edu.pe/departamento/biblioteca/reglamento")
         )
     }
-
     var textValue by remember { mutableStateOf("") }
 
     Column(
