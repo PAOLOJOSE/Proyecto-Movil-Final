@@ -29,11 +29,11 @@ object LibraryDirections : NavigationGroup(
     )
     val bookDetail = NavigationRoute(
         "${root.destination}/book-detail",
-        listOf(navArgument("bookId") { type = NavType.StringType })
+        listOf(navArgument("bookId") { type = NavType.IntType })
     )
     val bookCommentaries = NavigationRoute(
         "${root.destination}/book-commentaries",
-        emptyList()
+        listOf(navArgument("bookId") { type = NavType.IntType })
     )
 
     val bookReserve = NavigationRoute(

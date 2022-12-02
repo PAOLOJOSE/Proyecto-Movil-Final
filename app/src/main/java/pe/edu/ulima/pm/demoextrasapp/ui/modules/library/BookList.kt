@@ -55,7 +55,6 @@ fun BookList(
     val booksList = if (books.value == null) listOf<Book>() else {
         books.value!!
     }
-
     LaunchedEffect(key1 = Unit, block = {
         libraryViewModel.listBooks()
     })
@@ -63,7 +62,7 @@ fun BookList(
     LazyColumn {
         items(booksList) { book ->
             BookItem(book.titulo, book.tema, book.url) {
-                navigatorController.navigate("${LibraryDirections.bookCommentaries.destination}/${book.id}")
+                navigatorController.navigate("${LibraryDirections.bookDetail.destination}/${book.id}")
             }
         }
     }

@@ -1,6 +1,7 @@
 package pe.edu.ulima.pm.demoextrasapp.ui.modules
 
 import AppDrawer
+import HomeDirections
 import LibraryDirections
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -12,9 +13,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import kotlinx.coroutines.launch
+import pe.edu.ulima.pm.demoextrasapp.ui.modules.home.SearchScreen
 
 import pe.edu.ulima.pm.demoextrasapp.ui.modules.library.BookCommentaries
 import pe.edu.ulima.pm.demoextrasapp.ui.modules.library.BookDetail
@@ -32,7 +35,6 @@ fun MainPage() {
 
     val navController = rememberNavController()
 
-
     Scaffold(scaffoldState = scaffoldState, drawerContent = { AppDrawer() }, topBar = {
         AppTopBar(title = "Biblioteca", openDrawer = {
             scope.launch {
@@ -44,11 +46,8 @@ fun MainPage() {
     }) { innerPadding ->
         Box(Modifier.padding(innerPadding)) {
             AppNavigation(
-                navController = navController,
-                startDestination = LibraryDirections.root.destination
+                navController = navController, startDestination = HomeDirections.root.destination
             )
-
-
         }
     }
 }
@@ -58,9 +57,16 @@ fun AppNavigation(
     navController: NavHostController,
     startDestination: String,
 ) {
-
-
     NavHost(navController = navController, startDestination = startDestination) {
+        navigation(
+            startDestination = HomeDirections.default.destination,
+            route = HomeDirections.root.destination
+        ) {
+            composable(HomeDirections.home.destination, HomeDirections.home.arguments) {
+                SearchScreen(navController)
+            }
+        }
+
         navigation(
             startDestination = LibraryDirections.default.destination,
             route = LibraryDirections.root.destination
@@ -74,14 +80,20 @@ fun AppNavigation(
             composable(
                 "${LibraryDirections.bookCommentaries.destination}/{bookId}",
                 LibraryDirections.bookCommentaries.arguments
-            ) {
-                BookCommentaries(navController)
+            ) { backStackEntry ->
+                val libraryViewModel = hiltViewModel<LibraryViewModel>()
+                BookCommentaries(
+                    backStackEntry.arguments?.getInt("bookId"), libraryViewModel, navController
+                )
             }
             composable(
                 "${LibraryDirections.bookDetail.destination}/{bookId}",
                 LibraryDirections.bookDetail.arguments
-            ) {
-                BookDetail(navController)
+            ) { backStackEntry ->
+                val libraryViewModel = hiltViewModel<LibraryViewModel>()
+                BookDetail(
+                    backStackEntry.arguments?.getInt("bookId"), libraryViewModel, navController
+                )
             }
             composable(
                 "${LibraryDirections.bookReserve.destination}/{bookId}",
