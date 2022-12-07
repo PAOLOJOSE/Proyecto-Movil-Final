@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp.ui.theme
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

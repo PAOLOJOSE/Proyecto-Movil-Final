@@ -1,14 +1,9 @@
-package pe.edu.ulima.pm.demoextrasapp.ui.modules.library
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components
 
-import LibraryDirections
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
@@ -20,7 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
-import pe.edu.ulima.pm.demoextrasapp.ui.viewModels.LibraryViewModel
+import pe.edu.ulima.pm.demoextrasapp.core.model.Book
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.viewModels.LibraryViewModel
 
 @Composable
 fun DialogContent(message: String) {
@@ -38,7 +34,10 @@ fun DialogContent(message: String) {
 
 @Composable
 fun BookDetail(
-    bookId: Int?, libraryViewModel: LibraryViewModel, navigatorController: NavHostController
+    book: Book?,
+    libraryViewModel: LibraryViewModel,
+    onReadCommentsClick: () -> Unit,
+    onReserveClick: () -> Unit
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
 
@@ -55,10 +54,10 @@ fun BookDetail(
     }
 
     LaunchedEffect(key1 = Unit, block = {
-        if (bookId == null) {
+        if (book == null) {
             return@LaunchedEffect;
         }
-        libraryViewModel.getBook(bookId)
+        libraryViewModel.getBook(book.value!!.id)
         libraryViewModel.book.observe(lifecycleOwner) { it ->
             stock = it.dispo
         }
@@ -112,12 +111,13 @@ fun BookDetail(
             Text(text = "Disponibilidad: $stock")
             Button(
                 onClick = {
-                    if (stock == 0) {
-                        return@Button
-                    }
-                    --stock
-                    dialogMessage = "Reserva exitosa"
-                    dialogState.value = true
+                    onReserveClick()
+//                    if (stock == 0) {
+//                        return@Button
+//                    }
+//                    --stock
+//                    dialogMessage = "Reserva exitosa"
+//                    dialogState.value = true
                 },
             ) {
                 Text("RESERVAR")
@@ -139,9 +139,7 @@ fun BookDetail(
 
         Button(
             onClick = {
-                navigatorController.navigate(
-                    "${LibraryDirections.bookCommentaries.destination}/$bookId"
-                )
+                onReadCommentsClick()
             }, modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
             Text("Leer comentarios")

@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp.ui.modules.library
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.library
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -10,7 +10,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
-import androidx.compose.runtime.internal.composableLambdaInstance
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,7 +21,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import pe.edu.ulima.pm.demoextrasapp.ui.viewModels.LibraryViewModel
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.viewModels.LibraryViewModel
 
 @Composable
 fun BookCommentaries(

@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp.core.navigation
+package pe.edu.ulima.pm.demoextrasapp.presentation.routes
 
 abstract class NavigationGroup(val root: NavigationRoute) {
     abstract var default: NavigationRoute

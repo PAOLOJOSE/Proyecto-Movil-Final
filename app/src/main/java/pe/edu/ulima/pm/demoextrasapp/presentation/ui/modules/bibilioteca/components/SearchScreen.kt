@@ -1,29 +1,22 @@
-package pe.edu.ulima.pm.demoextrasapp.ui.modules.home
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components
 
-import HomeDirections
-import LibraryDirections
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Camera
 import androidx.compose.material.icons.rounded.PhotoCamera
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import pe.edu.ulima.pm.demoextrasapp.R
 
 @Composable
-fun SearchScreen(navController: NavController) {
+fun SearchScreen(onAccessToLibraryClick: () -> Unit, onAccessCameraClick: () -> Unit) {
     val context = LocalContext.current
     val intent = remember {
         Intent(
@@ -40,12 +33,13 @@ fun SearchScreen(navController: NavController) {
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Utiliza la camara para buscar un libro o accede directamenta a la Bilbioteca",
+        Text(
+            text = "Utiliza la camara para buscar un libro o accede directamenta a la Bilbioteca",
             textAlign = TextAlign.Center,
             fontSize = 20.sp,
         )
 
-        IconButton(onClick = { navController.navigate(HomeDirections.camera.destination) }) {
+        IconButton(onClick = onAccessCameraClick) {
             Icon(
                 Icons.Rounded.PhotoCamera, contentDescription = "Bg Image", Modifier.size(50.dp)
             )
@@ -65,13 +59,13 @@ fun SearchScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.Center
 
             ) {
-                Button(onClick = { navController.navigate(LibraryDirections.bookList.destination) }) {
+                Button(onClick = onAccessToLibraryClick) {
                     Text("ACCEDER A LA BIBLIOTECA", textAlign = TextAlign.Center)
                 }
             }
         }
 
-        Button(onClick = { context.startActivity(intent) },) {
+        Button(onClick = { context.startActivity(intent) }) {
             Text("REGLAMENTO DE LA BIBLIOTECA")
         }
     }

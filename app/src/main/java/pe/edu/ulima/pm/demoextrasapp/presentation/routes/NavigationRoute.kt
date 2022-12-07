@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp.core.navigation
+package pe.edu.ulima.pm.demoextrasapp.presentation.routes
 
 import androidx.navigation.NamedNavArgument
 

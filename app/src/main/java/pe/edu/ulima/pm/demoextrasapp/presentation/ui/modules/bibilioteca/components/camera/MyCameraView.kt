@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp.ui.modules.home.components
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.camera
 
 import android.content.Context
 import android.net.Uri

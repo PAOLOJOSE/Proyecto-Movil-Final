@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.main
 
 import android.annotation.SuppressLint
 import android.app.Notification
@@ -6,9 +6,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.LocationRequest
 import android.os.Build
 import android.os.Bundle
 import android.os.Looper
@@ -16,7 +14,6 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -25,7 +22,8 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import pe.edu.ulima.pm.demoextrasapp.ui.modules.home.MainScreen
+import pe.edu.ulima.pm.demoextrasapp.R
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.MainScreen
 
 
 val CHANNEL_ID = "1"

@@ -9,8 +9,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
-import pe.edu.ulima.pm.demoextrasapp.ui.modules.MainPage
-import pe.edu.ulima.pm.demoextrasapp.ui.theme.ULimaLibraryTheme
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.main.MainPage
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.theme.ULimaLibraryTheme
 
 @AndroidEntryPoint
 class CameraActivity : ComponentActivity() {

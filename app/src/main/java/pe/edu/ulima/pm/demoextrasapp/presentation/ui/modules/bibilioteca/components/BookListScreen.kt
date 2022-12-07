@@ -1,12 +1,9 @@
-package pe.edu.ulima.pm.demoextrasapp.ui.modules.library
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components
 
-
-import LibraryDirections
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
@@ -19,7 +16,7 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 
 import pe.edu.ulima.pm.demoextrasapp.core.model.Book
-import pe.edu.ulima.pm.demoextrasapp.ui.viewModels.LibraryViewModel
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.viewModels.LibraryViewModel
 
 @Composable
 fun BookItem(
@@ -48,7 +45,8 @@ fun BookItem(
 
 @Composable
 fun BookList(
-    libraryViewModel: LibraryViewModel = viewModel(), navigatorController: NavHostController
+    libraryViewModel: LibraryViewModel = viewModel(),
+    onBookClick: (Book) -> Unit
 ) {
 
     val books = libraryViewModel.books.observeAsState()
@@ -61,9 +59,9 @@ fun BookList(
 
     LazyColumn {
         items(booksList) { book ->
-            BookItem(book.titulo, book.tema, book.url) {
-                navigatorController.navigate("${LibraryDirections.bookDetail.destination}/${book.id}")
-            }
+            BookItem(book.titulo, book.tema, book.url, navigate = {
+                onBookClick(book)
+            })
         }
     }
 //bookCommentaries

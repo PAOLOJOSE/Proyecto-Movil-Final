@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp.ui.modules.shared
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.shared
 
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.Icon
