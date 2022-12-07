@@ -33,7 +33,6 @@ fun DrawerItem(item: NavDrawerItem, selected: Boolean, onItemClick: (NavDrawerIt
         Image(
             painter = painterResource(id = item.icon),
             contentDescription = item.title,
-            colorFilter = ColorFilter.tint(Color.White),
             contentScale = ContentScale.Fit,
             modifier = Modifier
                 .height(35.dp)
@@ -42,8 +41,7 @@ fun DrawerItem(item: NavDrawerItem, selected: Boolean, onItemClick: (NavDrawerIt
         Spacer(modifier = Modifier.width(7.dp))
         Text(
             text = item.title,
-            fontSize = 18.sp,
-            color = Color.White
+            fontSize = 18.sp
         )
     }
 }
