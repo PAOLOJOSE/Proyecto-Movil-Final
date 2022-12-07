@@ -61,58 +61,65 @@ fun BookCommentaries(
             stock = it.dispo
         }
     })
-
-    Column(
-        Modifier
-            .fillMaxWidth()
-            .padding(vertical = 10.dp, horizontal = 5.dp),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.spacedBy(10.dp)
-    ) {
-
-        Spacer(modifier = Modifier.width(16.dp))
+    Box(modifier = Modifier.padding(25.dp, 15.dp, 15.dp, 10.dp)) {
         Column(
             Modifier
-                .width(260.dp)
-                .height(150.dp)
-                .background(MaterialTheme.colors.primary)
-                .border(width = 2.dp, Color.Black),
+                .fillMaxWidth()
+                .padding(vertical = 10.dp, horizontal = 5.dp),
             horizontalAlignment = Alignment.End,
+            verticalArrangement = Arrangement.spacedBy(15.dp)
         ) {
-            Text(text = "Usuario N°1: ", fontSize = 40.sp)
-            LazyColumn {
-                items(commentaries) { commentary ->
-                    Text(commentary)
-                }
-            }
+
             Spacer(modifier = Modifier.width(16.dp))
-            Text(
-                text = book.value!!.coment,
+            Column(
                 Modifier
-                    .background(Color.White)
-                    .border(width = 2.dp, Color.White),
-                fontSize = 30.sp,
-            )
-            Spacer(modifier = Modifier.width(32.dp))
-        }
-
-        TextField(value = textValue,
-            modifier = Modifier
-                .width(260.dp)
-                .height(50.dp)
-                .focusRequester(focusRequester),
-            onValueChange = { textValue = it },
-            label = { Text("Ingresa un comentario") })
-
-        Spacer(modifier = Modifier.width(16.dp))
-
-        Row {
-            Button(onClick = { addCommentary() }) {
-                Text("PUBLICAR")
+                    .width(350.dp)
+                    .height(150.dp)
+                    .background(Color.LightGray)
+                    .padding(15.dp, 15.dp, 15.dp, 15.dp),
+                horizontalAlignment = Alignment.Start,
+            ) {
+                Text(text = "Usuario N°1: ", fontSize = 25.sp)
+                LazyColumn {
+                    items(commentaries) { commentary ->
+                        Text(text = commentary)
+                    }
+                }
+                Spacer(modifier = Modifier.width(16.dp))
+                Text(
+                    text = book.value!!.coment,
+                    Modifier
+                        .background(Color.White)
+                        .border(width = 2.dp, Color.White),
+                    fontSize = 30.sp,
+                )
+                Spacer(modifier = Modifier.width(32.dp))
             }
-            Button(onClick = { (textValue) }) {
-                Text("REGRESAR")
+
+            TextField(value = textValue,
+                modifier = Modifier
+                    .width(350.dp)
+                    .height(285.dp)
+                    .background(Color.LightGray)
+                    .focusRequester(focusRequester)
+                    ,
+                onValueChange = { textValue = it },
+                label = { Text("Ingresa un comentario") })
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Row {
+                Column() {
+                    Button(onClick = { addCommentary() }) {
+                        Text("PUBLICAR")
+                    }
+                    Button(onClick = { (textValue) }) {
+                        Text("REGRESAR")
+                    }
+                }
+
             }
         }
     }
+
 }
