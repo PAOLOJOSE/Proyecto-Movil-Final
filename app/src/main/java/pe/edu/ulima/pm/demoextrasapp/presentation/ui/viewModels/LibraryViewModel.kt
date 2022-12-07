@@ -74,7 +74,7 @@ class LibraryViewModel @Inject constructor(
 
     }
 
-    fun listBooks(title: String) {
+    fun listBooks(textToBeSearched: String) {
         viewModelScope.launch {
             try {
                 val listBookResponse = libraryService.listBooks()
@@ -100,7 +100,9 @@ class LibraryViewModel @Inject constructor(
                             it.url
                         )
                     }.filter {
-                        findText(it.tema, title)
+                        findText(it.tema, textToBeSearched) ||
+                                findText(it.titulo, textToBeSearched) ||
+                                findText(it.autor, textToBeSearched)
                     }
                     _books.postValue(books)
                 }

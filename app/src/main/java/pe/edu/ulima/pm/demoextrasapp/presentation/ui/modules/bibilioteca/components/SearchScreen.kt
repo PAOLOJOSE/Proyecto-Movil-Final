@@ -16,7 +16,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun SearchScreen(onAccessToLibraryClick: (String) -> Unit, onAccessCameraClick: () -> Unit) {
+fun SearchScreen(onAccessToLibraryClick: (String) -> Unit,
+                 onAccessCameraClick: () -> Unit,
+                 onRulesClick: () -> Unit
+) {
     val context = LocalContext.current
     val intent = remember {
         Intent(
@@ -67,7 +70,7 @@ fun SearchScreen(onAccessToLibraryClick: (String) -> Unit, onAccessCameraClick: 
             }
         }
 
-        Button(onClick = { context.startActivity(intent) }) {
+        Button(onClick = onRulesClick) {
             Text("REGLAMENTO DE LA BIBLIOTECA")
         }
     }
