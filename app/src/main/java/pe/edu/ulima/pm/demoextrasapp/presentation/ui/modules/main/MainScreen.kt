@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.main
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

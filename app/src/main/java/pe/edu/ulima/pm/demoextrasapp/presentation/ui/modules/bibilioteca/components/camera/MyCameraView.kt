@@ -23,8 +23,8 @@ import java.util.concurrent.Executors
 
 @Composable
 fun MyCameraView(
-    onPhotoTaken : (Uri) -> Unit,
-    onError : (String) -> Unit,
+    onTakePhotoClick : (Uri) -> Unit,
+    onTakePhotoErroClick : (String) -> Unit,
     uri : Uri
 ) {
     if (uri == Uri.EMPTY) {
@@ -54,8 +54,8 @@ fun MyCameraView(
                         imageCapture = imageCapture,
                         outputDirectory = context.getOutputDirectory(),
                         executor = Executors.newSingleThreadExecutor(),
-                        onPhotoTaken = onPhotoTaken,
-                        onError =  onError
+                        onPhotoTaken = onTakePhotoClick,
+                        onTakePhotoErroClick =  onTakePhotoErroClick
                     )
                 }
 
@@ -67,16 +67,13 @@ fun MyCameraView(
                 }
             }
         }
-    }else {
+    } else {
         AsyncImage(
             model = uri,
             contentDescription = "Foto tomada",
             modifier = Modifier.fillMaxSize()
         )
     }
-
-
-
 }
 
 private fun takePhoto(
@@ -85,7 +82,7 @@ private fun takePhoto(
     outputDirectory : File,
     executor: Executor,
     onPhotoTaken : (Uri) -> Unit,
-    onError : (String) -> Unit
+    onTakePhotoErroClick : (String) -> Unit
 ) {
     // Nombre del archivo donde se guardara la foto
     val photoFile = File(
@@ -107,7 +104,7 @@ private fun takePhoto(
             }
 
             override fun onError(exception: ImageCaptureException) {
-                onError(exception.message!!)
+                onTakePhotoErroClick(exception.message!!)
             }
         }
     )

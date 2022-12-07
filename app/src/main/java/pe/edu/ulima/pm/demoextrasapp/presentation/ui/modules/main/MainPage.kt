@@ -22,6 +22,7 @@ import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.compone
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.library.BookCommentaries
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.BookDetail
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.BookList
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.camera.AdminClubMembershipScanScreen
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.library.BookReserve
 
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.shared.AppTopBar
@@ -65,7 +66,7 @@ fun AppNavigation(
 
         // camera
         composable(LibraryScreenRoutes.Camera.route) {
-            MyCameraScreen()
+            AdminClubMembershipScanScreen(navController)
         }
 
         // search
