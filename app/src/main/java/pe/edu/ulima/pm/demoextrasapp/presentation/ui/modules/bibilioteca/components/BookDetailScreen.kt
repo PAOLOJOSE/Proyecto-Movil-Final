@@ -89,6 +89,7 @@ fun BookDetail(
                     .padding(horizontal = 10.dp, vertical = 10.dp)
                     .border(width = 0.5.dp, Color.LightGray),
             ) {
+
                 Text(
                     text = book.value!!.titulo,
                     fontSize = 30.sp,
