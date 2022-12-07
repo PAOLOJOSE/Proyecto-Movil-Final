@@ -80,6 +80,11 @@ fun BookCommentaries(
             horizontalAlignment = Alignment.End,
         ) {
             Text(text = "Usuario N°1: ", fontSize = 40.sp)
+            LazyColumn {
+                items(commentaries) { commentary ->
+                    Text(commentary)
+                }
+            }
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = book.value!!.coment,
@@ -89,12 +94,6 @@ fun BookCommentaries(
                 fontSize = 30.sp,
             )
             Spacer(modifier = Modifier.width(32.dp))
-        }
-
-        LazyColumn {
-            items(commentaries) { commentary ->
-                Text(commentary)
-            }
         }
 
         TextField(value = textValue,

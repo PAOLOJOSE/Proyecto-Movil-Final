@@ -68,81 +68,95 @@ fun BookDetail(
             DialogContent(dialogMessage)
         })
     }
-
-    Column(
-
-        Modifier
-            .fillMaxWidth()
-            .padding(vertical = 10.dp, horizontal = 5.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp, 20.dp, 20.dp, 20.dp)
     ) {
         Column(
+
             Modifier
-                .width(300.dp)
-                .height(150.dp)
-                .padding(horizontal = 10.dp, vertical = 10.dp)
-                .border(width = 2.dp, Color.Black),
+                .fillMaxWidth()
+                .padding(vertical = 10.dp, horizontal = 5.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Text(text = book.value!!.titulo, fontSize = 30.sp)
-            Text(text = "Autor: ${book.value!!.autor}")
-            Text(text = "Pie de imprenta: ${book.value!!.imprenta}")
-            Text(text = "Descripcion fisica: ${book.value!!.descr}")
-            Text(text = "ISBN: ${book.value!!.ISBN}")
-        }
-        Column(
-            Modifier
-                .width(300.dp)
-                .border(
-                    width = 2.dp, Color.Black
-                ),
-        ) {
-            Text(text = "Codigo de clasificacion: ${book.value!!.codCla}")
-            Text(text = "Localización: ${book.value!!.localizacion}")
-            Text(text = "Copias: ${book.value!!.copias}")
-        }
-        Spacer(modifier = Modifier.width(16.dp))
-        Row(
-            Modifier
-                .width(300.dp)
-                .height(50.dp)
-                .border(width = 2.dp, Color.Black),
-        ) {
-            Text(text = "Disponibilidad: $stock")
-            Button(
-                onClick = {
-                    onReserveClick()
+            Column(
+                Modifier
+                    .width(300.dp)
+                    .height(150.dp)
+                    .padding(horizontal = 10.dp, vertical = 10.dp)
+                    .border(width = 0.5.dp, Color.LightGray),
+            ) {
+                Text(
+                    text = book.value!!.titulo,
+                    fontSize = 30.sp,
+                    style = MaterialTheme.typography.h3,
+                )
+                Text(text = "Autor:  ${book.value!!.autor}", color = Color.LightGray)
+                Text(text = "Pie de imprenta:  ${book.value!!.imprenta}", color = Color.LightGray)
+                Text(text = "Descripcion fisica:  ${book.value!!.descr} paginas", color = Color.LightGray)
+                Text(text = "ISBN:  ${book.value!!.ISBN}", color = Color.LightGray)
+            }
+            Column(
+                Modifier
+                    .width(300.dp)
+                    .border(
+                        width = 0.5.dp, Color.LightGray
+                    ),
+            ) {
+                Text(text = "Codigo de clasificacion: ${book.value!!.codCla}")
+                Text(text = "Localización: ${book.value!!.localizacion}")
+                Text(text = "Copias: ${book.value!!.copias}")
+            }
+            Spacer(modifier = Modifier.width(16.dp))
+            Row(
+                Modifier
+                    .width(300.dp)
+                    .height(50.dp)
+                    .border(width = 1.dp, Color.LightGray),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+
+                ) {
+                Text(text = "Disponibilidad: $stock")
+                Button(
+                    onClick = {
+                        onReserveClick()
 //                    if (stock == 0) {
 //                        return@Button
 //                    }
 //                    --stock
 //                    dialogMessage = "Reserva exitosa"
 //                    dialogState.value = true
-                },
+                    },
+                ) {
+                    Text("RESERVAR")
+                }
+            }
+
+            Spacer(modifier = Modifier.width(10.dp))
+
+            Button(
+                onClick = {
+                    dialogMessage = "Quedan $stock disponibles"
+                    dialogState.value = true
+                }, modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
-                Text("RESERVAR")
+                Text("NOTIFICAR DE DISPONIBILIDAD")
+            }
+
+            Spacer(modifier = Modifier.width(30.dp))
+
+            Button(
+                onClick = {
+                    onReadCommentsClick()
+                }, modifier = Modifier.align(Alignment.CenterHorizontally)
+            ) {
+                Text("Leer comentarios")
             }
         }
-
-        Spacer(modifier = Modifier.width(10.dp))
-
-        Button(
-            onClick = {
-                dialogMessage = "Quedan $stock disponibles"
-                dialogState.value = true
-            }, modifier = Modifier.align(Alignment.CenterHorizontally)
-        ) {
-            Text("NOTIFICAR DE DISPONIBILIDAD")
-        }
-
-        Spacer(modifier = Modifier.width(30.dp))
-
-        Button(
-            onClick = {
-                onReadCommentsClick()
-            }, modifier = Modifier.align(Alignment.CenterHorizontally)
-        ) {
-            Text("Leer comentarios")
-        }
     }
+
 }

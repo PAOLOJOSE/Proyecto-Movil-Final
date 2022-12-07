@@ -1,5 +1,6 @@
 package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.library
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -24,17 +25,18 @@ fun BookReserve(
 
     Box(
         contentAlignment = Alignment.Center,
-        modifier =Modifier
-            .padding(50.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp, 20.dp, 20.dp, 20.dp)
     )
     {
         Column(
             modifier = Modifier
-                .width(300.dp)
-                .height(270.dp)
                 .border(width = 2.dp, Color.LightGray)
-                .padding(20.dp, 20.dp, 20.dp, 5.dp),
-        ) {
+                .padding(20.dp, 20.dp, 20.dp, 20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
 
             Text(
                 text = reservedBook.value!!.titulo,
@@ -43,22 +45,22 @@ fun BookReserve(
                 fontSize = 30.sp,
                 modifier = Modifier.padding(bottom = 25.dp),
             )
-            Text(text = "Autor: ${reservedBook.value!!.autor}", color = Color.DarkGray)
+            Text(text = "Autor:   ${reservedBook.value!!.autor}", color = Color.LightGray)
             Text(
-                text = "Pie de imprenta:${reservedBook.value!!.imprenta} ",
-                color = Color.DarkGray,
+                text = "Pie de imprenta:   ${reservedBook.value!!.imprenta} ",
+                color = Color.LightGray,
             )
             Text(
-                text = "Descripcion fisica:${reservedBook.value!!.descr} ",
-                color = Color.DarkGray,
+                text = "Descripcion fisica:   ${reservedBook.value!!.descr} paginas. ",
+                color = Color.LightGray,
             )
             Text(
                 text = "ISBN: ${reservedBook.value!!.ISBN}",
                 modifier = Modifier.padding(bottom = 45.dp),
-                color = Color.DarkGray,
+                color = Color.LightGray,
             )
 
-            Text(text = "Se debe devolver en 12 dias", color = Color.DarkGray)
+            Text(text = "Se debe devolver en 12 dias", color = Color.LightGray)
         }
     }
 }
