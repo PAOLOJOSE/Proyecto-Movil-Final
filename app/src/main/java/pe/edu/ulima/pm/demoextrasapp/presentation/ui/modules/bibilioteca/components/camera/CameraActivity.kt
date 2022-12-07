@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.camera
 
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -18,7 +18,7 @@ class CameraActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        requestCameraPermission()
+//        requestCameraPermission()
         setContent {
             ULimaLibraryTheme {
                 MainPage()
