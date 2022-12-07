@@ -87,6 +87,9 @@ class LibraryViewModel @Inject constructor(
                             it.year,
                             it.url
                         )
+                    }.filter {
+                        // TODO refactorizar este método
+                        findText(it.tema,"Basica") || findText(it.titulo,"Basica") || findText(it.autor,"Basica")
                     }
                     _books.postValue(books)
                 }
@@ -95,5 +98,10 @@ class LibraryViewModel @Inject constructor(
             }
 
         }
+    }
+
+    private fun findText(text: String, textSearched:String): Boolean {
+        val regex = """(?i)\b($textSearched)\b""".toRegex()
+        return regex.containsMatchIn(text)
     }
 }
