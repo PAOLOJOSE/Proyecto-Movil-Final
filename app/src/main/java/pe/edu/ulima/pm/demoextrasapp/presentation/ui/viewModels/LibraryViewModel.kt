@@ -26,7 +26,14 @@ class LibraryViewModel @Inject constructor(
     private var _selectedBook = MutableLiveData<Book>(Book())
     val selectedBook: LiveData<Book> = _selectedBook;
 
-    fun setSelectedBook(book: Book){
+    private var _selectedTitulo = MutableLiveData<String>("")
+    val selectedTitulo: LiveData<String> = _selectedTitulo;
+
+    fun setSelectedTitulo(titulo: String) {
+        _selectedTitulo.value = titulo
+    }
+
+    fun setSelectedBook(book: Book) {
         _selectedBook.value = book
     }
 
@@ -69,7 +76,7 @@ class LibraryViewModel @Inject constructor(
 
     }
 
-    fun listBooks() {
+    fun listBooks(title: String) {
         viewModelScope.launch {
             try {
                 val listBookResponse = libraryService.listBooks()
@@ -95,8 +102,7 @@ class LibraryViewModel @Inject constructor(
                             it.url
                         )
                     }.filter {
-                        // TODO refactorizar este método
-                        findText(it.tema,"Basica") || findText(it.titulo,"Basica") || findText(it.autor,"Basica")
+                        findText(it.tema, title)
                     }
                     _books.postValue(books)
                 }
@@ -107,8 +113,7 @@ class LibraryViewModel @Inject constructor(
         }
     }
 
-    private fun findText(text: String, textSearched:String): Boolean {
-        val regex = """(?i)\b($textSearched)\b""".toRegex()
-        return regex.containsMatchIn(text)
+    private fun findText(originalText: String, textToBeSearched: String): Boolean {
+        return originalText.contains(textToBeSearched, ignoreCase = true)
     }
 }

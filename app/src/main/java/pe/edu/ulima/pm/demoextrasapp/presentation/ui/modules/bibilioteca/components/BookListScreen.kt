@@ -45,17 +45,9 @@ fun BookItem(
 
 @Composable
 fun BookList(
-    libraryViewModel: LibraryViewModel = viewModel(),
+    booksList: List<Book>,
     onBookClick: (Book) -> Unit
 ) {
-
-    val books = libraryViewModel.books.observeAsState()
-    val booksList = if (books.value == null) listOf<Book>() else {
-        books.value!!
-    }
-    LaunchedEffect(key1 = Unit, block = {
-        libraryViewModel.listBooks()
-    })
 
     LazyColumn {
         items(booksList) { book ->

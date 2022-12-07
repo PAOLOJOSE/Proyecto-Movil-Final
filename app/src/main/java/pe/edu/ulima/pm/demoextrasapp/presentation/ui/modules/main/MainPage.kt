@@ -2,6 +2,8 @@ package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.main
 
 import AppDrawer
 import LibraryScreenRoutes
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -15,6 +17,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanOptions
 import kotlinx.coroutines.launch
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.camera.MyCameraScreen
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.SearchScreen
@@ -61,20 +65,34 @@ fun AppNavigation(
     val libraryViewModel = hiltViewModel<LibraryViewModel>()
 
     val selectedBook by libraryViewModel.selectedBook.observeAsState()
+    val selectedTitulo by libraryViewModel.selectedTitulo.observeAsState("")
+    val booksFound by libraryViewModel.books.observeAsState(emptyList())
 
     NavHost(navController = navController, startDestination = startDestination) {
 
         // camera
         composable(LibraryScreenRoutes.Camera.route) {
+
+
+
             AdminClubMembershipScanScreen(navController)
         }
 
         // search
         composable(LibraryScreenRoutes.Search.route) {
+            val scanLauncher = rememberLauncherForActivityResult(
+                contract = ScanContract(),
+                onResult = { result ->
+                    libraryViewModel.setSelectedTitulo(titulo = result.contents)
+                }
+            )
+
             SearchScreen(
                 onAccessCameraClick = {
-                    navController.navigate(LibraryScreenRoutes.Camera.route)
+                    scanLauncher.launch(ScanOptions())
+//                    navController.navigate(LibraryScreenRoutes.Camera.route)
                 }, onAccessToLibraryClick = {
+                    libraryViewModel.setSelectedTitulo(titulo = it)
                     navController.navigate(LibraryScreenRoutes.BookList.route)
                 })
         }
@@ -83,9 +101,10 @@ fun AppNavigation(
         composable(
             LibraryScreenRoutes.BookList.route
         ) {
+            // request books
+            libraryViewModel.listBooks(selectedTitulo)
 
-            BookList(libraryViewModel, onBookClick = { book ->
-                libraryViewModel.setSelectedBook(book)
+            BookList(booksList = booksFound, onBookClick = { book ->
                 navController.navigate(LibraryScreenRoutes.BookDetail.route)
             })
         }

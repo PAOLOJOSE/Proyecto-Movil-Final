@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun SearchScreen(onAccessToLibraryClick: () -> Unit, onAccessCameraClick: () -> Unit) {
+fun SearchScreen(onAccessToLibraryClick: (String) -> Unit, onAccessCameraClick: () -> Unit) {
     val context = LocalContext.current
     val intent = remember {
         Intent(
@@ -59,7 +59,9 @@ fun SearchScreen(onAccessToLibraryClick: () -> Unit, onAccessCameraClick: () -> 
                 horizontalArrangement = Arrangement.Center
 
             ) {
-                Button(onClick = onAccessToLibraryClick) {
+                Button(onClick = {
+                    onAccessToLibraryClick(textValue)
+                }) {
                     Text("ACCEDER A LA BIBLIOTECA", textAlign = TextAlign.Center)
                 }
             }
