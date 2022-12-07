@@ -38,7 +38,7 @@ fun BookCommentaries(
     }
 
     val lifecycleOwner = LocalLifecycleOwner.current
-    val book = libraryViewModel.book.observeAsState()
+    val book = libraryViewModel.selectedBook.observeAsState()
 
     val focusRequester = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
@@ -57,7 +57,7 @@ fun BookCommentaries(
             return@LaunchedEffect;
         }
         libraryViewModel.getBook(bookId)
-        libraryViewModel.book.observe(lifecycleOwner) { it ->
+        libraryViewModel.selectedBook.observe(lifecycleOwner) { it ->
             stock = it.dispo
         }
     })

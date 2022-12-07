@@ -20,8 +20,6 @@ class LibraryViewModel @Inject constructor(
     private var _books = MutableLiveData<List<Book>>(listOf())
     val books: LiveData<List<Book>> = _books
 
-    private var _book = MutableLiveData<Book>(Book())
-    val book: LiveData<Book> = _book;
 
     private var _selectedBook = MutableLiveData<Book>(Book())
     val selectedBook: LiveData<Book> = _selectedBook;
@@ -65,7 +63,7 @@ class LibraryViewModel @Inject constructor(
                             bookResponse.url
                         )
                     }
-                    _book.postValue(
+                    _selectedBook.postValue(
                         book
                     )
                 }

@@ -105,6 +105,7 @@ fun AppNavigation(
             libraryViewModel.listBooks(selectedTitulo)
 
             BookList(booksList = booksFound, onBookClick = { book ->
+                libraryViewModel.setSelectedBook(book)
                 navController.navigate(LibraryScreenRoutes.BookDetail.route)
             })
         }
@@ -139,7 +140,10 @@ fun AppNavigation(
         composable(
             LibraryScreenRoutes.Reserve.route
         ) {
-            BookReserve(navController)
+            BookReserve(
+                navController,
+                libraryViewModel
+            )
         }
 
     }

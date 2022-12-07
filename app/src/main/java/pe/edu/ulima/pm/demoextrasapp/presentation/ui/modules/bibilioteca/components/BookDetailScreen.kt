@@ -41,7 +41,7 @@ fun BookDetail(
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
 
-    val book = libraryViewModel.book.observeAsState()
+    val book = libraryViewModel.selectedBook.observeAsState()
 
     var stock by remember {
         mutableStateOf(0)
@@ -58,7 +58,7 @@ fun BookDetail(
             return@LaunchedEffect;
         }
         libraryViewModel.getBook(book.value!!.id)
-        libraryViewModel.book.observe(lifecycleOwner) { it ->
+        libraryViewModel.selectedBook.observe(lifecycleOwner) { it ->
             stock = it.dispo
         }
     })
@@ -70,12 +70,12 @@ fun BookDetail(
     }
 
     Column(
+
         Modifier
             .fillMaxWidth()
             .padding(vertical = 10.dp, horizontal = 5.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(10.dp)
-
     ) {
         Column(
             Modifier
