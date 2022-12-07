@@ -57,7 +57,6 @@ fun BookDetail(
         if (book == null) {
             return@LaunchedEffect;
         }
-        libraryViewModel.getBook(book.value!!.id)
         libraryViewModel.selectedBook.observe(lifecycleOwner) { it ->
             stock = it.dispo
         }

@@ -20,7 +20,7 @@ import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.main.NavDrawerItem
 
 @Composable
 fun DrawerItem(item: NavDrawerItem, selected: Boolean, onItemClick: (NavDrawerItem) -> Unit) {
-    val background = if (selected) R.color.purple_200 else android.R.color.transparent
+    val background = if (selected) R.color.universidad_de_lima else android.R.color.transparent
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier

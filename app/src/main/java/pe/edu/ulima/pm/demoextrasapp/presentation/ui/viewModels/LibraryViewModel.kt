@@ -35,45 +35,6 @@ class LibraryViewModel @Inject constructor(
         _selectedBook.value = book
     }
 
-    fun getBook(bookId: Int) {
-        viewModelScope.launch {
-            try {
-                val listBookResponse = libraryService.listBooks()
-                val data = listBookResponse.body()
-
-                if (data != null && viewModelScope.isActive) {
-                    val bookResponse = data.books.find { it -> it.id == bookId }
-                    val book = if (bookResponse == null) {
-                        Book()
-                    } else {
-                        Book(
-                            bookResponse.ISBN,
-                            bookResponse.autor,
-                            bookResponse.codCla,
-                            bookResponse.coment,
-                            bookResponse.copias,
-                            bookResponse.descr,
-                            bookResponse.dispo,
-                            bookResponse.id,
-                            bookResponse.imprenta,
-                            bookResponse.localizacion,
-                            bookResponse.tema,
-                            bookResponse.titulo,
-                            bookResponse.year,
-                            bookResponse.url
-                        )
-                    }
-                    _selectedBook.postValue(
-                        book
-                    )
-                }
-            } catch (exception: Exception) {
-                Log.e("getBook", exception.toString())
-            }
-        }
-
-    }
-
     fun listBooks(textToBeSearched: String) {
         viewModelScope.launch {
             try {

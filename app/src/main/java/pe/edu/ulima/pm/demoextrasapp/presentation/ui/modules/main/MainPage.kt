@@ -24,7 +24,7 @@ import com.journeyapps.barcodescanner.ScanOptions
 import pe.edu.ulima.pm.demoextrasapp.R
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.SearchScreen
 
-import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.library.BookCommentaries
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.BookCommentaries
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.BookDetail
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.BookList
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.camera.AdminClubMembershipScanScreen

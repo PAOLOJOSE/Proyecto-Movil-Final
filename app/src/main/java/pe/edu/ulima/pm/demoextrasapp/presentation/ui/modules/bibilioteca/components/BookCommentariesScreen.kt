@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.library
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -56,7 +56,6 @@ fun BookCommentaries(
         if (bookId == null) {
             return@LaunchedEffect;
         }
-        libraryViewModel.getBook(bookId)
         libraryViewModel.selectedBook.observe(lifecycleOwner) { it ->
             stock = it.dispo
         }
