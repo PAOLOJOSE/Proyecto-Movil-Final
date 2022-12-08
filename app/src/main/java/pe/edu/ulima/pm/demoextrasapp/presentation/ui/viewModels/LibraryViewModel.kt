@@ -11,6 +11,8 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import pe.edu.ulima.pm.demoextrasapp.core.model.Book
 import pe.edu.ulima.pm.demoextrasapp.core.remote.services.LibraryService
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -85,5 +87,17 @@ class LibraryViewModel @Inject constructor(
 
     private fun findText(originalText: String, textToBeSearched: String): Boolean {
         return originalText.contains(textToBeSearched, ignoreCase = true)
+    }
+
+    fun obtenerFecha(): String {
+        val sdf = SimpleDateFormat("dd/MM/yyyy")
+        val currentDate = sdf.format(Date())
+        return currentDate
+    }
+
+    fun obtenerTiempo(): String {
+        val formatter = SimpleDateFormat("hh:mm:ss a")
+        val time = formatter.format(Date())
+       return time
     }
 }
