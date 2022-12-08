@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -28,9 +29,10 @@ import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.compone
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.BookDetail
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.BookList
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.camera.AdminClubMembershipScanScreen
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.intranet.IntranetScreen
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.library.BookReserve
-import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.shared.DrawerLayout
-import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.shared.TopBar
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.main.components.DrawerLayout
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.main.components.TopBar
 
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.viewModels.LibraryViewModel
 
@@ -42,31 +44,50 @@ fun MainPage() {
     val scope = rememberCoroutineScope()
     val navController = rememberNavController()
 
-    Scaffold(
-        scaffoldState = scaffoldState,
-        topBar = { TopBar(scope = scope, scaffoldState = scaffoldState) },
-        drawerBackgroundColor = colorResource(id = R.color.white),
-        drawerContent = {
-            DrawerLayout(scope = scope, scaffoldState = scaffoldState, navController = navController)
-        },
-    ) {
-        ComposeNavigation(
-            navController = navController,
-        )
-    }
-}
-
-@Composable
-fun ComposeNavigation(navController: NavHostController) {
-
     val context = LocalContext.current
     val libraryViewModel = hiltViewModel<LibraryViewModel>()
 
     val selectedBook by libraryViewModel.selectedBook.observeAsState()
     val selectedTitulo by libraryViewModel.selectedTitulo.observeAsState("")
+    val loggedUserName by libraryViewModel.loggedUserName.observeAsState("")
+
+    Scaffold(
+        scaffoldState = scaffoldState,
+        topBar = { TopBar(scope = scope, scaffoldState = scaffoldState) },
+        drawerBackgroundColor = colorResource(id = R.color.white),
+        drawerContent = {
+            DrawerLayout(
+                scope = scope,
+                scaffoldState = scaffoldState,
+                navController = navController,
+                userNameLogged = loggedUserName
+            )
+        },
+    ) {
+        ComposeNavigation(
+            navController = navController,
+            libraryViewModel = libraryViewModel,
+            context = context
+        )
+    }
+}
+
+@Composable
+fun ComposeNavigation(navController: NavHostController, libraryViewModel: LibraryViewModel, context: Context) {
+
+    val selectedBook by libraryViewModel.selectedBook.observeAsState()
+    val selectedTitulo by libraryViewModel.selectedTitulo.observeAsState("")
     val booksFound by libraryViewModel.books.observeAsState(emptyList())
 
-    NavHost(navController, startDestination = NavDrawerItem.Coffee.route) {
+    NavHost(navController, startDestination = NavDrawerItem.Intranet.route) {
+        composable(NavDrawerItem.Intranet.route) {
+            IntranetScreen(
+                libraryViewModel = libraryViewModel,
+                onLoginClick = {
+                    libraryViewModel.setLoggedUserName("Paolo Jose Salcedo Nunez")
+                    Toast.makeText(context, "Inicio sesion exitosamente", Toast.LENGTH_LONG).show()
+                })
+        }
         composable(NavDrawerItem.Coffee.route) {
 
         }
@@ -85,6 +106,7 @@ fun ComposeNavigation(navController: NavHostController) {
                 contract = ScanContract(),
                 onResult = { result ->
                     libraryViewModel.setSelectedTitulo(titulo = result.contents)
+                    navController.navigate(LibraryScreenRoutes.BookList.route)
                 }
             )
 

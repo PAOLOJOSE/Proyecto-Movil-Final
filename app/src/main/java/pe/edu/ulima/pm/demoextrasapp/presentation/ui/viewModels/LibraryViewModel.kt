@@ -27,12 +27,19 @@ class LibraryViewModel @Inject constructor(
     private var _selectedTitulo = MutableLiveData<String>("")
     val selectedTitulo: LiveData<String> = _selectedTitulo;
 
+    private var _loggedUserName = MutableLiveData<String>("No inicio sesion")
+    val loggedUserName: LiveData<String> = _loggedUserName;
+
     fun setSelectedTitulo(titulo: String) {
         _selectedTitulo.value = titulo
     }
 
     fun setSelectedBook(book: Book) {
         _selectedBook.value = book
+    }
+
+    fun setLoggedUserName(userName: String) {
+        _loggedUserName.value = userName
     }
 
     fun listBooks(textToBeSearched: String) {
