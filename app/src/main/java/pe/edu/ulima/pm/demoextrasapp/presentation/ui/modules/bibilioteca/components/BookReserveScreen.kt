@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.library
+package pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -61,6 +61,8 @@ fun BookReserve(
             )
 
             Text(text = "Se debe devolver en 12 dias", color = Color.LightGray)
+            Text(text = "Fecha de reserva: ${libraryViewModel.obtenerFecha()}")
+            Text(text = "Hora de reserva: ${libraryViewModel.obtenerTiempo()}")
         }
     }
 }

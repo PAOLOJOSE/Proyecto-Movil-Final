@@ -30,7 +30,7 @@ import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.compone
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.BookList
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.camera.AdminClubMembershipScanScreen
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.intranet.IntranetScreen
-import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.library.BookReserve
+import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.bibilioteca.components.BookReserve
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.main.components.DrawerLayout
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.modules.main.components.TopBar
 
