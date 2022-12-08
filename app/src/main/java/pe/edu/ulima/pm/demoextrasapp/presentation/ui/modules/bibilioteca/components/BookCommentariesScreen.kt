@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -21,11 +22,12 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import pe.edu.ulima.pm.demoextrasapp.core.model.Book
 import pe.edu.ulima.pm.demoextrasapp.presentation.ui.viewModels.LibraryViewModel
 
 @Composable
 fun BookCommentaries(
-    bookId: Int?, libraryViewModel: LibraryViewModel, navigatorController: NavHostController
+    bookId: Int?, book: Book, navigatorController: NavHostController
 ) {
 
     var textValue by remember { mutableStateOf("") }
@@ -38,7 +40,7 @@ fun BookCommentaries(
     }
 
     val lifecycleOwner = LocalLifecycleOwner.current
-    val book = libraryViewModel.selectedBook.observeAsState()
+
 
     val focusRequester = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
@@ -56,9 +58,9 @@ fun BookCommentaries(
         if (bookId == null) {
             return@LaunchedEffect;
         }
-        libraryViewModel.selectedBook.observe(lifecycleOwner) { it ->
-            stock = it.dispo
-        }
+//        libraryViewModel.selectedBook.observe(lifecycleOwner) { it ->
+//            stock = it.dispo
+//        }
     })
     Box(modifier = Modifier.padding(25.dp, 15.dp, 15.dp, 10.dp)) {
         Column(
@@ -78,21 +80,30 @@ fun BookCommentaries(
                     .padding(15.dp, 15.dp, 15.dp, 15.dp),
                 horizontalAlignment = Alignment.Start,
             ) {
+
                 Text(text = "Usuario N°1: ", fontSize = 25.sp)
+
+                Text(
+                    text = book.coment,
+                    color = Color.Black,
+                    fontSize = 15.sp,
+                    modifier = Modifier
+                        .background(Color.White, shape = RoundedCornerShape(30.dp))
+                        .padding(7.dp)
+                )
+                Spacer(modifier = Modifier.height(7.dp))
                 LazyColumn {
                     items(commentaries) { commentary ->
-                        Text(text = commentary)
+                        Text(
+                            text = commentary,
+                            Modifier
+                                .background(Color.White, shape = RoundedCornerShape(30.dp))
+                                .padding(7.dp)
+                        )
+                        Spacer(modifier = Modifier.height(7.dp))
                     }
                 }
                 Spacer(modifier = Modifier.width(16.dp))
-                Text(
-                    text = book.value!!.coment,
-                    Modifier
-                        .background(Color.White)
-                        .border(width = 2.dp, Color.White),
-                    fontSize = 30.sp,
-                )
-                Spacer(modifier = Modifier.width(32.dp))
             }
 
             TextField(value = textValue,
@@ -100,8 +111,7 @@ fun BookCommentaries(
                     .width(350.dp)
                     .height(285.dp)
                     .background(Color.LightGray)
-                    .focusRequester(focusRequester)
-                    ,
+                    .focusRequester(focusRequester),
                 onValueChange = { textValue = it },
                 label = { Text("Ingresa un comentario") })
 

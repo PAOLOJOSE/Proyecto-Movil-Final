@@ -153,9 +153,9 @@ fun ComposeNavigation(navController: NavHostController, libraryViewModel: Librar
         composable(
             LibraryScreenRoutes.Comments.route
         ) { backStackEntry ->
-            val libraryViewModel = hiltViewModel<LibraryViewModel>()
+
             BookCommentaries(
-                backStackEntry.arguments?.getInt("bookId"), libraryViewModel, navController
+                backStackEntry.arguments?.getInt("bookId"), selectedBook!!, navController
             )
         }
 
