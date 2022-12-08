@@ -75,7 +75,7 @@ fun BookCommentaries(
             Column(
                 Modifier
                     .width(350.dp)
-                    .height(150.dp)
+                    .height(200.dp)
                     .background(Color.LightGray)
                     .padding(15.dp, 15.dp, 15.dp, 15.dp),
                 horizontalAlignment = Alignment.Start,
@@ -109,7 +109,7 @@ fun BookCommentaries(
             TextField(value = textValue,
                 modifier = Modifier
                     .width(350.dp)
-                    .height(285.dp)
+                    .height(235.dp)
                     .background(Color.LightGray)
                     .focusRequester(focusRequester),
                 onValueChange = { textValue = it },
