@@ -50,17 +50,21 @@ fun MainPage() {
     val selectedBook by libraryViewModel.selectedBook.observeAsState()
     val selectedTitulo by libraryViewModel.selectedTitulo.observeAsState("")
     val loggedUserName by libraryViewModel.loggedUserName.observeAsState("")
+    val pageTitle by libraryViewModel.pageTitle.observeAsState("")
 
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { TopBar(scope = scope, scaffoldState = scaffoldState) },
+        topBar = { TopBar(scope = scope, scaffoldState = scaffoldState, pageTitle = pageTitle) },
         drawerBackgroundColor = colorResource(id = R.color.white),
         drawerContent = {
             DrawerLayout(
                 scope = scope,
                 scaffoldState = scaffoldState,
                 navController = navController,
-                userNameLogged = loggedUserName
+                userNameLogged = loggedUserName,
+                onPageTitleClick = {
+                    libraryViewModel.setPageTitle(it)
+                }
             )
         },
     ) {

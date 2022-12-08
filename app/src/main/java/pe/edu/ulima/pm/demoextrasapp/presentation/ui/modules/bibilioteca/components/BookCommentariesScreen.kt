@@ -36,7 +36,9 @@ fun BookCommentaries(
     }
 
     var commentaries = remember {
-        mutableStateListOf<String>()
+        mutableStateListOf<String>().apply {
+            add(book.coment)
+        }
     }
 
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -58,9 +60,6 @@ fun BookCommentaries(
         if (bookId == null) {
             return@LaunchedEffect;
         }
-//        libraryViewModel.selectedBook.observe(lifecycleOwner) { it ->
-//            stock = it.dispo
-//        }
     })
     Box(modifier = Modifier.padding(25.dp, 15.dp, 15.dp, 10.dp)) {
         Column(
@@ -83,14 +82,7 @@ fun BookCommentaries(
 
                 Text(text = "Usuario N°1: ", fontSize = 25.sp)
 
-                Text(
-                    text = book.coment,
-                    color = Color.Black,
-                    fontSize = 15.sp,
-                    modifier = Modifier
-                        .background(Color.White, shape = RoundedCornerShape(30.dp))
-                        .padding(7.dp)
-                )
+
                 Spacer(modifier = Modifier.height(7.dp))
                 LazyColumn {
                     items(commentaries) { commentary ->

@@ -21,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -107,12 +108,12 @@ fun IntranetScreen(
                         backgroundColor = Color(0xFFFFFFFF)
                     ),
                     keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Password,
-                        imeAction = ImeAction.Done
+                        keyboardType = KeyboardType.Password
                     ),
+                    visualTransformation = PasswordVisualTransformation(),
                     label = {
                         Text(
-                            "Codigo",
+                            "Contraseña",
                             textAlign = TextAlign.Center,
                             color = Color.LightGray,
                             style = MaterialTheme.typography.body1,
@@ -134,7 +135,7 @@ fun IntranetScreen(
 
                     content = {
                         Text(
-                            "Ingresar",
+                            "INGRESAR",
                             fontWeight = FontWeight.Bold,
                             color = Color.White,
                             style = MaterialTheme.typography.body1

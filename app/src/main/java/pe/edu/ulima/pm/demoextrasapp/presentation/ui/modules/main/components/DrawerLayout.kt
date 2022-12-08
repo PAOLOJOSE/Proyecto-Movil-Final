@@ -28,7 +28,8 @@ fun DrawerLayout(
     scope: CoroutineScope,
     scaffoldState: ScaffoldState,
     navController: NavController,
-    userNameLogged: String
+    userNameLogged: String,
+    onPageTitleClick:(String) -> Unit
 ) {
     val items = listOf(
         NavDrawerItem.Intranet,
@@ -96,6 +97,7 @@ fun DrawerLayout(
         val currentRoute = navBackStackEntry?.destination?.route
         items.forEach { item ->
             DrawerItem(item = item, selected = currentRoute == item.route, onItemClick = {
+                onPageTitleClick(item.title)
                 navController.navigate(item.route) {
                     navController.graph.startDestinationRoute?.let { route ->
                         popUpTo(route) {
